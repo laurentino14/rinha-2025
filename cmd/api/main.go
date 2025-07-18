@@ -49,7 +49,7 @@ func main() {
 	s := api.Setup(repository, processWorkerPool)
 
 	serverIsDown := make(chan struct{})
-	// for range 4 {
+
 	go func() {
 		log.Printf("Server listening on %s", config.ADDR)
 		if err := s.Serve(ln); err != nil && err != fasthttp.ErrConnectionClosed {
@@ -57,7 +57,6 @@ func main() {
 		}
 		close(serverIsDown)
 	}()
-	// }
 
 	defer ln.Close()
 
