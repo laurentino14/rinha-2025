@@ -67,13 +67,9 @@ func (s *PaymentRepository) GetSummary(ctx context.Context, from, to string) mod
 		if err == nil {
 			if processor == 1 {
 				response.Default.TotalRequests = total
-				// ratio := math.Pow(10, float64(2))
-				// response.Default.TotalAmount = math.Round(sum*ratio) / ratio
 				response.Default.TotalAmount = sum
 			} else {
 				response.Fallback.TotalRequests = total
-				// ratio := math.Pow(10, float64(2))
-				// response.Fallback.TotalAmount = math.Round(sum*ratio) / ratio
 				response.Fallback.TotalAmount = sum
 			}
 		}

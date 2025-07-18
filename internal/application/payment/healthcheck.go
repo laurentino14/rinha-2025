@@ -85,7 +85,7 @@ func (s *worker) healthListener() {
 				slog.Info("[Healthcheck]: changed to DEFAULT")
 			case 2:
 				slog.Info("[Healthcheck]: changed to FALLBACK")
-			}	
+			}
 		} else {
 			slog.Info("[Healthcheck]: no changes")
 		}
@@ -112,7 +112,7 @@ func (s *worker) healthWorker() {
 				slog.Info("[Healthcheck]: changed to DEFAULT")
 			case 2:
 				slog.Info("[Healthcheck]: changed to FALLBACK")
-			}	
+			}
 		} else {
 			slog.Info("[Healthcheck]: no changes")
 		}
