@@ -1,0 +1,22 @@
+FROM golang:1.24-bookworm AS prepare
+RUN apt-get update && apt-get install -y libczmq-dev
+
+FROM prepare AS build
+WORKDIR /usr/src/api
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+
+RUN CGO_ENABLED=1 go build -o main cmd/api/main.go
+
+FROM debian:bookworm-slim AS prepare-runner
+
+RUN apt-get update && apt-get install -y libczmq4 && rm -rf /var/lib/apt/lists/*
+
+FROM prepare-runner AS runner
+WORKDIR /app
+COPY --from=build /usr/src/api/main .
+
+CMD ["./main"]

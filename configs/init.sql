@@ -1,7 +1,7 @@
 CREATE UNLOGGED TABLE payments (
     correlation_id UUID PRIMARY KEY,
     amount        DECIMAL NOT NULL,
-    processor SMALLINT NOT NULL CHECK (processor IN (0, 1)),
+    processor SMALLINT NOT NULL CHECK (processor IN (1, 2)),
     requested_at   TIMESTAMP NOT NULL
 );
 

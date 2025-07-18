@@ -1,0 +1,11 @@
+.env*
+redis.conf
+payment-processor
+rinha-test
+requests
+report*
+comparison*
+.air*
+temp
+logs
+partial-results.json

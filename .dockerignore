@@ -1,0 +1,9 @@
+report*
+payment-processor
+requests
+rinha-test
+configs
+.env
+comparison*
+logs*
+configs
