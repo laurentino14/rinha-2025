@@ -23,7 +23,8 @@ services:
     <<: *dev
     container_name: api1
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       - SERVER=main
 
@@ -31,19 +32,16 @@ services:
     <<: *dev
     container_name: api2
     depends_on:
-      - postgres
       - api1
   api3:
     <<: *dev
     container_name: api3
     depends_on:
-      - postgres
       - api1
   api4:
     <<: *dev
     container_name: api4
     depends_on:
-      - postgres
       - api1
 
   postgres:
@@ -66,6 +64,12 @@ services:
         limits:
           cpus: "0.5"
           memory: "190MB"
+    healthcheck: 
+      test: ["CMD-SHELL", "pg_isready -U rinha -d rinha"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 30s 
 
   nginx:
     image: nginx:alpine
