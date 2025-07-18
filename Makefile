@@ -3,6 +3,14 @@ reqs ?= 500
 start-pp:
 	docker compose -f payment-processor/docker-compose.yml up -d
 
+start:
+	docker compose -f payment-processor/docker-compose.yml up -d
+	docker compose up
+
+d:
+	docker compose down
+	docker compose -f payment-processor/docker-compose.yml down
+
 dev:
 	docker compose -f payment-processor/docker-compose.yml up -d
 	COMPOSE_BAKE=true docker compose -f docker-compose.dev.yml up
@@ -19,6 +27,9 @@ docker-clean:
 	docker image prune -f
 	docker image rm rinha-2025-api1
 	docker image rm rinha-2025-api2
+
+build%:
+	docker build -t laurentinodeev/rinha-2025-go:$* -f build/Dockerfile.api .
 
 down: compose-down docker-clean
 
