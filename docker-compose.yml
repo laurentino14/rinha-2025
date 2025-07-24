@@ -1,6 +1,6 @@
 x-service-templates:
   api: &api
-    image: laurentinodeev/rinha-2025-go:v1
+    image: laurentinodeev/rinha-2025-go:v2
     networks:
       - rinha
       - payment-processor
